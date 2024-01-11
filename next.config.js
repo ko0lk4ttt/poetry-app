@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    transpilePackages: ['react-daisyui'],
-    reactStrictMode: true,
-}
+  transpilePackages: ["react-daisyui"],
+  reactStrictMode: true,
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
