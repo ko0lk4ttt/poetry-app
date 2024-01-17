@@ -27,19 +27,35 @@ const handler = NextAuth({
           where: { name: name },
         });
 
-        console.log(user);
-
         if (!user || !bcrypt.compareSync(password, user.password)) {
           return null;
         }
 
-        return user;
+        return {
+          id: user.id,
+          name: user.name,
+          isAdmin: user.isAdmin,
+        };
       },
     }),
   ],
-  session: {
-    jwt: true,
-  },
+  callbacks: {
+    jwt: async ({ token, user, account }) => {
+      if (user) {
+        token.sub = user.id;
+        token.user = user;
+      }
+
+      return token;
+    },
+    session: async ({ session, token, user }) => {
+      session.user.id = token.sub;
+      console.log('session', session)
+      console.log('token', token)
+      console.log('user', user)
+      return session;
+    }
+  }
 });
 
 export { handler as GET, handler as POST };
