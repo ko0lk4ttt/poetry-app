@@ -6,10 +6,9 @@ import { Button } from "react-daisyui";
 export default function Home() {
   const { data: session, status } = useSession();
 
-  console.log(session)
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <pre>{JSON.stringify(session, null, 2)}</pre>
       <div className="text-center">
         <h1 className="text-4xl font-bold mb-4">
           Welcome to VerseVibe: Where Words Take Flight

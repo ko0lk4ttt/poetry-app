@@ -1,5 +1,6 @@
 "use server";
 
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { PrismaClient } from "@prisma/client";
 import { getServerSession } from "next-auth";
 import { getSession } from "next-auth/react";
@@ -8,7 +9,7 @@ import { redirect } from "next/navigation";
 export async function createPost(formData: FormData) {
   const prisma = new PrismaClient();
 
-  const session = await getServerSession();
+  const session = await getServerSession(authOptions);
 
   if (!session) {
     return {
@@ -25,11 +26,9 @@ export async function createPost(formData: FormData) {
     };
   }
 
-  console.log(session);
-
   const post = await prisma.post.create({
     data: {
-      // authorId: session.user.id,
+      authorId: session.user.id,
       title: title,
       content: content,
     },
