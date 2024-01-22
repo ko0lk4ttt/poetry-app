@@ -28,6 +28,7 @@ export default async function Page({ params }: { params: { id: string } }) {
             Delete Post
           </Button>
         </form>
+        <div className="divider divider-horizontal"></div>
         <Link href={`/posts/${post.id}/update`}>
           <Button color="primary" className="float-end mt-4">
             Update Post

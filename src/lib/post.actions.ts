@@ -49,7 +49,7 @@ export async function getPost(id: string) {
 export async function getPosts() {
   const posts = await prisma.post.findMany({
     orderBy: { createdAt: "desc" },
-    take: 10,
+    take: 6,
   });
 
   return posts;
