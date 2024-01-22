@@ -1,11 +1,22 @@
 "use client";
 
-import { getPosts } from "../../lib/post.actions";
+import { getPosts } from "@/lib/post.actions";
 import Link from "next/link";
 import { Button } from "react-daisyui";
+import { useEffect, useState } from "react";
+import { Post } from "@prisma/client";
 
-export default async function Page() {
-  const posts = await getPosts();
+export default function Page() {
+  const [posts, setPosts] = useState<Post[] | null>(null);
+
+  useEffect(() => {
+    const getData = async () => {
+      const posts = await getPosts();
+      setPosts(posts);
+    }
+
+    getData();
+  }, []);
 
   return (
     <div className="my-4 p-4 border rounded">
