@@ -5,10 +5,9 @@ import { PrismaClient } from "@prisma/client";
 import { getServerSession } from "next-auth";
 import { getSession } from "next-auth/react";
 import { redirect } from "next/navigation";
+import prisma from "@/utils/prisma";
 
 export async function createPost(formData: FormData) {
-  const prisma = new PrismaClient();
-
   const session = await getServerSession(authOptions);
 
   if (!session) {
@@ -38,8 +37,6 @@ export async function createPost(formData: FormData) {
 }
 
 export async function getPost(id: string) {
-  const prisma = new PrismaClient();
-
   const post = await prisma.post.findUnique({
     where: {
       id: id,
@@ -50,8 +47,6 @@ export async function getPost(id: string) {
 }
 
 export async function getPosts() {
-  const prisma = new PrismaClient();
-
   const posts = await prisma.post.findMany({
     orderBy: { createdAt: "desc" },
     take: 10,
@@ -61,7 +56,6 @@ export async function getPosts() {
 }
 
 export async function updatePost(formData: FormData) {
-  const prisma = new PrismaClient();
   const session = await getSession();
 
   const id = formData.get("id") as string;
@@ -88,7 +82,6 @@ export async function updatePost(formData: FormData) {
 }
 
 export async function deletePost(formData: FormData) {
-  const prisma = new PrismaClient();
   const id = formData.get("id") as string;
 
   await prisma.post.delete({
