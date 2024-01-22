@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { Alert, Button, Card, Input } from "react-daisyui";
 
 export function LoginForm() {
-  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
@@ -13,7 +13,7 @@ export function LoginForm() {
 
     const result = await signIn("credentials", {
       redirect: false,
-      email,
+      name,
       password,
     });
 
@@ -21,7 +21,7 @@ export function LoginForm() {
       setError(result.error);
     } else {
       console.log(result);
-      // redirect('/');
+      redirect("/");
     }
   };
 
@@ -30,9 +30,9 @@ export function LoginForm() {
       <Card.Body>
         <form action={handleSumbit} className="flex flex-col gap-2">
           <Input
-            placeholder="Email"
-            type="email"
-            onChange={(e) => setEmail(e.target.value)}
+            placeholder="name"
+            type="name"
+            onChange={(e) => setName(e.target.value)}
           />
           <Input
             placeholder="Password"

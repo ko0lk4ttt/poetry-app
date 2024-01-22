@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { deletePost, getPost } from "../../../lib/post.actions";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -22,17 +22,17 @@ export default async function Page({ params }: { params: { id: string } }) {
         </Button>
       </Link>
       <div className="flex space-between">
-      <form action={deletePost}>
-        <input type="hidden" name="id" value={post.id} />
-        <Button color="danger" type="submit" className="mt-4">
-          Delete Post
-        </Button>
-      </form>
-      <Link href={`/posts/${post.id}/update`}>
-        <Button color="primary" className="float-end mt-4">
-          Update Post
-        </Button>
-      </Link>
+        <form action={deletePost}>
+          <input type="hidden" name="id" value={post.id} />
+          <Button color="danger" type="submit" className="mt-4">
+            Delete Post
+          </Button>
+        </form>
+        <Link href={`/posts/${post.id}/update`}>
+          <Button color="primary" className="float-end mt-4">
+            Update Post
+          </Button>
+        </Link>
       </div>
     </div>
   );
