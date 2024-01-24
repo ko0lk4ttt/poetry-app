@@ -62,11 +62,9 @@ export default function Home() {
           </div>
 
           <div className="flex justify-center">
-            <Button className="ml-5 mt-4">
-              <Link href="/posts">
-                <Button color="secondary">
+            <Button className="ml-5 mt-4" color="accent">
+              <Link href="/posts">  
                   See my posts
-                </Button>
               </Link>
             </Button>
             <div className="divider divider-horizontal"></div>
